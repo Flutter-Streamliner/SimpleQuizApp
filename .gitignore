@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Miscellaneous
 *.class
 *.log
@@ -86,4 +85,3 @@ pubspec.lock
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
 doc/api/
->>>>>>> fcf827ffb1b187eb623d4a554101deeebb1ea8b5
