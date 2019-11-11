@@ -1,11 +1,31 @@
 import 'package:flutter/material.dart';
 
+import 'package:simple_quiz_app/question.dart';
+
 main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() => _MyAppState();
+
+}
+
+class _MyAppState extends State<MyApp> {
+
+  var _questions = ['What\'s your name?', 'How do you do?'];
+
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex += 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var questions = ['What\'s your name?', 'How do you do?'];
+    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -13,14 +33,14 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Text('Quiz'),
+            Question(_questions[_questionIndex]),
             RaisedButton(
-              child: Text(questions[0]),
-              onPressed: () {},
+              child: Text('Answer 1'),
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
-              child: Text(questions[1]),
-              onPressed: () {},
+              child: Text('Answer 2'),
+              onPressed: _answerQuestion,
             ),
           ],
         ),
