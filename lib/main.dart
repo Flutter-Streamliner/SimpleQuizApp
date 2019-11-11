@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:simple_quiz_app/question.dart';
+import 'package:simple_quiz_app/answer.dart';
 
 main() => runApp(MyApp());
 
@@ -13,11 +14,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  var _questions = ['What\'s your name?', 'How do you do?'];
+  var _questions = [
+    {'questionText' : 'What\'s your name?',
+    'answers' : ['David', 'Pablo', 'Martin']
+    }, 
+    {'questionText' : 'How do you do?',
+    'answers' : ['good', 'fine', 'ok']
+    }, 
+    {'questionText' : 'What\'s your favourite color?',
+    'answers' : ['black', 'white', 'red']
+    }, 
+  ];
 
   var _questionIndex = 0;
 
-  void _answerQuestion() {
+  void _answerCallback() {
     setState(() {
       _questionIndex += 1;
     });
@@ -33,15 +44,10 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(_questions[_questionIndex]),
-            RaisedButton(
-              child: Text('Answer 1'),
-              onPressed: _answerQuestion,
-            ),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: _answerQuestion,
-            ),
+            Question(_questions[_questionIndex]['questionText']),
+            ...(_questions[_questionIndex]['answers'] as List<String>).map((answer){
+              return Answer(_answerCallback, answer);
+            }).toList(),
           ],
         ),
       ),
